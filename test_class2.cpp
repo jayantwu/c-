@@ -1,4 +1,3 @@
-//深拷贝、拷贝构造函数
 #include <iostream>
 
 using namespace std;
@@ -36,6 +35,13 @@ class A
 		{
 			cout << *age << endl;
 		}
+		A & operator=(const A &a)
+		{
+			delete age;
+			age = new int;
+			*age = *(a.age);
+			return *this;
+		}
 		
 		
 };
@@ -44,10 +50,13 @@ class A
 int main()
 {
 	A a(2);
-	A b(a);
+	//A b(a);
+	A c;
+	c = a;
 	
 	//b = a;
 	a.show();
-	b.show();
+	//b.show();
+	c.show();
 	//A b(a);
 }
