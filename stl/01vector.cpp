@@ -5,7 +5,7 @@ int main()
 {
     vector<int> vec;
     for (int i = 0; i != 10; i++)
-        vec.push_back(i);
+        vec.push_back(i); //also can use emplace_back()
 
     for (auto i : vec)   //range for loop
         cout << i << endl;
