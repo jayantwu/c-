@@ -64,9 +64,39 @@ lory: 76
 sam: 91
 tony: 98
 **********
-lili: 87
-lory: 76
-sam: 91
-tony: 98
+lili: 88
+lory: 77
+sam: 92
+tony: 99
+**********
+lili: 88
+lory: 77
+nick: 88
+sam: 92
+tony: 99
+**********
+katty: 76
+lili: 88
+lory: 77
+nick: 88
+sam: 92
+tony: 99
+**********
+jeck: 100
+katty: 76
+lili: 88
+lory: 77
+nick: 88
+sam: 92
+tony: 99
+**********
+jeck: 100
+katty: 76
+lory: 77
+nick: 88
+sam: 92
+tony: 99
+**********
+nick: 88
 
 */
