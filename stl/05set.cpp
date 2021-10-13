@@ -41,12 +41,12 @@ int main ()
   it = myset.begin();
   ++it;                                         // "it" points now to 20
 
-  myset.erase (it);
+  myset.erase (it);   // 通过iterator删除一个元素
 
   myset.erase (40);
 
   it = myset.find (60);
-  myset.erase (it, myset.end());
+  myset.erase (it, myset.end());   // 指定一个范围
 
   std::cout << "myset contains:";
   for (it=myset.begin(); it!=myset.end(); ++it)
