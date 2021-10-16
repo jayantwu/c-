@@ -11,7 +11,7 @@ class testClassA
     public:
         testClassA(int x, int y);
         //testClassA();
-        ~testClassA();
+        virtual ~testClassA();
         int geta(){return a;}
         int getb(){return b;}
         virtual void show();
