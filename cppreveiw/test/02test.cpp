@@ -22,7 +22,7 @@ int main()
         down,
         init,
         up
-    };
+    }s;
 
     //enum class color {red, blue};  //scope enum
 
