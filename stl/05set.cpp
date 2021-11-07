@@ -1,6 +1,7 @@
 // set::begin/end
 #include <iostream>
 #include <set>
+#include <vector>
 
 int main ()
 {
@@ -52,6 +53,21 @@ int main ()
   for (it=myset.begin(); it!=myset.end(); ++it)
     std::cout << ' ' << *it;
   std::cout << '\n';
+
+  //11.7 update
+  std::vector<int> v{1, 4, 6, 2, 7};
+
+  std::set<int>  s{v.begin(), v.end()};
+
+  std::cout << "s size is " <<  s.size() << std::endl;
+
+  for (std::set<int>::iterator it = s.begin() ; it != s.end(); it++)
+    std::cout << *it << std::endl;  // 1 2 4 6 7
+
+  for (auto i : s)
+    std::cout << i << std::endl;
+
+
 
   return 0;
 }
