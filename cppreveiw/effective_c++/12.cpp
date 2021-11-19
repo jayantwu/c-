@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <memory>
 
 using namespace std;
 
@@ -62,6 +63,12 @@ int main()
     st2.show();
     student st3(st2);
     st3.show();
-    
+
+    shared_ptr<people> p1(new student("tom", 25, 6));
+    shared_ptr<people> p2(new people("Han", 20));
+
+    p1->show();
+    p2->show();
+
 
 }
