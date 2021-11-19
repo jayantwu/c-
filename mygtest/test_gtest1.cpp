@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include <gtest/gtest.h>
-
+using namespace std;
 // 待测函数
 int fun(int a) {
   return a + 1;
@@ -32,8 +32,28 @@ TEST(AddTest, HandlesAdd2and2) {
 
 class mytestfun: public ::testing::Test {
     protected:
-        mytestfun(){   //constructor no need
-            
+        void SetUp() override
+        {
+            ptra = shared_ptr<int>{new int(5)};
+            ptrb = shared_ptr<int>(new int(6));
+            cout << " set up " << endl;
+        }
+
+        void TearDown() override
+        {
+            //delete ptra;
+            //delete ptrb;
+            cout << "tear down" << endl;
+        }
+
+        int geta()
+        {
+            return *ptra;
+        }
+
+        int getb()
+        {
+            return *ptrb;
         }
 
         int add(int a, int b) {
@@ -42,6 +62,11 @@ class mytestfun: public ::testing::Test {
         int minus(int a, int b){
             return a - b;
         }
+
+        //int * ptra;
+        //int * ptrb;
+        shared_ptr<int> ptra;
+        shared_ptr<int> ptrb;
 
 };
 
@@ -54,6 +79,16 @@ TEST_F(mytestfun, testadd)
 TEST_F(mytestfun, testminus)
 {
     EXPECT_EQ(0, minus(2, 2));  // ok
+}
+
+TEST_F(mytestfun, geta)
+{
+    EXPECT_EQ(5, geta());
+}
+
+TEST_F(mytestfun, getb)
+{
+    EXPECT_EQ(6, getb());
 }
 
 int main(int argc, char **argv) {
