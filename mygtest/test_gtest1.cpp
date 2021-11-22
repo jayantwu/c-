@@ -3,6 +3,9 @@
 #include <iostream>
 #include <gtest/gtest.h>
 using namespace std;
+
+
+
 // 待测函数
 int fun(int a) {
   return a + 1;
@@ -10,6 +13,33 @@ int fun(int a) {
 
 int add(int a, int b) {
     return a + b;
+}
+
+bool isEven(int n)
+{
+    if ((n % 2) == 0)
+        return true;
+    else
+        return false;
+}
+
+testing::AssertionResult testisEven(int n)
+{
+    if (isEven(n))
+        return testing::AssertionSuccess() << n << " is even";
+    else
+        return testing::AssertionFailure() << n << " is odd";
+}
+
+TEST(Funtest, isEven)
+{
+    EXPECT_TRUE(testisEven(5));
+}
+
+TEST(Funtest, isEven2)
+{
+    int a = 7;
+    EXPECT_PRED1(isEven, a);
 }
 
 // 单元测试
@@ -26,6 +56,7 @@ TEST(AddTest, HandlesAdd1and2) {
 }
 
 TEST(AddTest, HandlesAdd2and2) {
+    GTEST_SKIP() << "Skipping single test";
     EXPECT_EQ(3, add(2, 2));  // failed
 }
 
