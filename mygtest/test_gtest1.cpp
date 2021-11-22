@@ -38,8 +38,8 @@ TEST(Funtest, isEven)
 
 TEST(Funtest, isEven2)
 {
-    int a = 7;
-    EXPECT_PRED1(isEven, a);
+    int a = 8;
+    EXPECT_PRED1(testisEven, a);
 }
 
 // 单元测试
