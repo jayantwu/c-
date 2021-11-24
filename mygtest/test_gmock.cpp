@@ -42,22 +42,42 @@ TEST(demo, 2) {
         .Times(1)
         .WillOnce(Return(3));
 
-    EXPECT_EQ(t.doThat(), 3);
+    EXPECT_EQ(t.doThat(), 3); // doThat()中用到了 p的一些接口， 不需要知道内部的实现， 通过EXPECT_CALL指定了一定入参数下的返回值
+}
+
+
+TEST(demo, 3) {
+    MockParent p;
+    Target t(&p);
+    EXPECT_CALL(p, getNum())
+        .Times(1)
+        .WillOnce(Return(3));
+    
+    EXPECT_CALL(p, print(string("4")))
+        .Times(1);
+
+    EXPECT_CALL(p, setResult(3))
+        .Times(1);
+        
+    EXPECT_EQ(t.doWhat(), 4);
+    
 }
 
 /*
 Running main() from gmock_main.cc
-[==========] Running 2 tests from 1 test suite.
+[==========] Running 3 tests from 1 test suite.
 [----------] Global test environment set-up.
-[----------] 2 tests from demo
+[----------] 3 tests from demo
 [ RUN      ] demo.1
 2
 [       OK ] demo.1 (0 ms)
 [ RUN      ] demo.2
 [       OK ] demo.2 (0 ms)
-[----------] 2 tests from demo (0 ms total)
+[ RUN      ] demo.3
+[       OK ] demo.3 (0 ms)
+[----------] 3 tests from demo (0 ms total)
 
 [----------] Global test environment tear-down
-[==========] 2 tests from 1 test suite ran. (0 ms total)
-[  PASSED  ] 2 tests.
+[==========] 3 tests from 1 test suite ran. (0 ms total)
+[  PASSED  ] 3 tests.
 */
