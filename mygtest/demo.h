@@ -34,6 +34,15 @@ class Target {
         return parent_->calc(1, 2.2);
     }
 
+    int doWhat()
+    {
+        int v = parent_->getNum();
+        parent_->setResult(v);
+        v = v + 1;
+        parent_->print(to_string(v));
+        return v;
+    }
+
   private:
     Parent *parent_;
 };
