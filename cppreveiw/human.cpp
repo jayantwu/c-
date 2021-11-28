@@ -16,12 +16,12 @@ void Human::say(char * w)
 
 Location& Human::getlocation()
 {
-    return location;
+    return _location;
 }
 
 void Human::walk(int a, int b)
 {
-    location.addmove(a, b);
+    _location.addmove(a, b);
 }
 
 
