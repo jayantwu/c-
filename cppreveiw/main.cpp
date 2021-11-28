@@ -3,7 +3,7 @@
 using namespace std;
 int main()
 {
-    Human A("wujiayang", 25, 0, 0);
+    Human A("wujiayang", 25, Location(0, 0), MALE);
     string word = "hello guys!";
     A.say(word);
     //A.say("hi everyone");
@@ -14,8 +14,8 @@ int main()
     A.walk(3,4);
     A.getlocation().showlocation();
 
-    Human B("lory", 27, 6, 5);
-    cout << B.getname() << ": " << B.getage() << endl;
+    Human B("lory", 27, Location(6, 5), FEMALE);
+    cout << B.name() << ": " << B.age() << endl;
 
 
 

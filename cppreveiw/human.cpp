@@ -1,16 +1,6 @@
 #include "human.h"
 #include<iostream>
 
-Human::Human(std::string n, int num, int a, int b): name(n), age(num),location(a, b)
-{
-
-}
-
-
-Human::~Human()
-{
-
-}
 
 
 void Human::say(std::string & word)

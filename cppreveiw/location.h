@@ -10,6 +10,11 @@ class Location
 
     public:
         Location(int a = 0, int b = 0);
+        Location(const Location & l)
+        {
+            x = l.x;
+            y = l.y;
+        }
         ~Location();
         void showlocation();
         int getx();
