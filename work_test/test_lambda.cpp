@@ -29,6 +29,28 @@ int main()
     cout << ret << endl;
 
 
+    int y = [](int x, int y)->int {
+        return x + y;
+    }(1, 2);
+
+    cout << "y= " << y << endl;
+
+    int a = 6;
+    auto f1 = [a](int x)mutable->int  {    // use mutable, can cchange the capture, defaul is const
+        a = a + x;
+        return a;
+    };
+
+    auto f2 = [&a](int x) -> int {   // use reference, can change the capture 
+        a = a + x;  
+        return a;
+    };
+
+    cout << f1(3) << endl;
+    cout << f2(3) << endl;
+
+
+
 
 
 }
