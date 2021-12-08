@@ -51,9 +51,12 @@ int main()
 
     cout << endl;
     string s2 = "0x123";
+    string s3 = "123";
     HexT<int> ret = lexical_cast<HexT<int>>(s2);
    //cout << int(ret) << endl; //不需要显式
     cout << ret << endl;
+    auto ret2 = lexical_cast<HexT<int>>(s3); // "123" will treat as 0x123
+    cout << ret2<< endl;
   /*
     try 
     {  

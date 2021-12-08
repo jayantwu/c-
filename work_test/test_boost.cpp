@@ -28,6 +28,17 @@ int main()
     w.reset();
     std::cout << w << std::endl;  // 0000000000
 
+    boost::dynamic_bitset<> a(std::string("0011"));
+    boost::dynamic_bitset<> b(std::string("0011"));
+
+    if (a == b)
+        std::cout << "a equals b" << std::endl;
+
+
+    std::cout << a << std::endl;
+
+
+
 
     return EXIT_SUCCESS;
 }
