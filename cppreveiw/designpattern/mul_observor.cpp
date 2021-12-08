@@ -52,7 +52,7 @@ protected:
         auto it = m_iprocesslist.begin();
         while (it != m_iprocesslist.end())
         {
-                (*it)->doprocess(v);
+                (*it)->doprocess(v); //实际调的是子类的doprocess函数，因为*it实际是一个指向子类的指针
                 it++;
         } 
     }
@@ -70,7 +70,7 @@ class mainform : public Iprocess {  //观察者 concrete obervor
 private:
     string path;
     int num;
-    progressbar *probar;
+    progressbar *probar; //进度条
 public:
     mainform(string p, int n) : path(p), num(n) { 
         probar = new progressbar(); 
@@ -79,12 +79,12 @@ public:
     void button1(){
 
         filesplit splitter{path, num};
-        splitter.addprocess(this);  //订阅通知
-        splitter.split();
+        splitter.addprocess(this);  //订阅通知, 将子类的指针传给父类的指针
+        splitter.split(); // split会去调用一个doprocess()
     }
     
     virtual void doprocess(float n) {
-        probar->setval(n);
+        probar->setval(n);  //自定义进度条的实现
     }
     ~mainform() { delete probar; }
 };

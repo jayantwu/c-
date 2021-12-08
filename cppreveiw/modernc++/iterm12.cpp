@@ -5,11 +5,11 @@ using namespace std;
 
 class Widget{
     public:
-        void doWork() &
+        void doWork() &   //对象是一个lval时调用
         {
             cout << "dowork &" << endl;
         }
-        void doWork() &&
+        void doWork() &&    //对象是一个rval时调用
         {
             cout << "dowork &&" << endl;
         }
