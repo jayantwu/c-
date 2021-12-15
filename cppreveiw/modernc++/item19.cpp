@@ -40,6 +40,15 @@ int main()
     //auto p2 = new A();  //不要将raw pointer直接指向对象
     //shared_ptr<A> sp1(p2, delfun);  
     shared_ptr<A> p2(new A()); //应该这样，将创建出来的raw pointer 立即放入smt pointer 管理
+    auto p3 = new A();
+    vector<shared_ptr<A>> ptra_v;
+    ptra_v.emplace_back(p3);  // 一般不要将 raw pointer的变量直接给shared_ptr的构造函数
+    //ptra_v.emplace_back(p3);  //错误的做法，这样指针会释放两次， p3所指的对象会有两份control block
+    vector<A*> ptra_v2;
+    ptra_v2.push_back(new A());
+    auto p4 = new A();
+    auto ptr1 = shared_ptr<A>(p4);
+    //auto ptr2 = shared_ptr<A>(p4);
 
     return 0;
 
