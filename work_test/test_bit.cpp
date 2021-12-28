@@ -7,7 +7,7 @@ using namespace boost;
 dynamic_bitset<> writereg(int src, int pos, int size, int v)
 {
 
-    int mask = 0;
+    auto mask = 0;
     auto t = v << pos;
     while(--size >= 0)
     {    
@@ -28,7 +28,7 @@ dynamic_bitset<> writereg(int src, int pos, int size, int v)
 
 int main()
 {
-    auto ret = writereg(0b11111111111111, 5, 3, 9);
+    auto ret = writereg(0b11111111111111, 5, 3, 5);
     cout << ret << endl;
 
     return 0;
