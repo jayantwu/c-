@@ -37,8 +37,10 @@ int main()
 
     std::cout << a << std::endl;
 
+    std::cout << "**************" << std::endl;
 
-
-
+    boost::dynamic_bitset<> test_bit(10);
+    test_bit.set();
+    std::cout << "test_bit: " << test_bit << std::endl;
     return EXIT_SUCCESS;
 }
