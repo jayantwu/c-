@@ -54,6 +54,12 @@ int main()
     std::cout << " is in bucket #" << myumap.bucket(x.first) << std::endl;
   }
 
+
+  if (myumap.contains("us"))
+  {
+      std::cout << 
+  }
+
     
 
 

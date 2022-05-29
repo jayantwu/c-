@@ -16,6 +16,11 @@ int main()
     int capacity = vec.capacity();
     cout << "capacity=" << capacity << endl;   //capacity=16
 
+    vector<int> v2;
+    v2.push_back(1);
+    v2.push_back(2);
+
+    cout << "v2:" << v2.back() << endl;
     return 0;
 }
 
