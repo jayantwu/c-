@@ -1,0 +1,22 @@
+cmake_minimum_required(VERSION 3.15)
+
+project(basictest)
+
+set(CMAKE_CXX_STANDARD 14)
+
+find_package(Threads REQUIRED)
+find_package(fmt REQUIRED)
+
+#aux_source_directory(. SRCLIST)
+
+set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/build/bin)
+
+#add_executable(test1 ${SRCLIST})
+add_executable(test1 ${CMAKE_CURRENT_SOURCE_DIR}/test1.cpp)
+
+target_link_libraries(test1 
+    PRIVATE Threads::Threads fmt::fmt)
+
+add_executable(test2 ${CMAKE_CURRENT_SOURCE_DIR}/test2.cpp)
+
+add_executable(test3 ${CMAKE_CURRENT_SOURCE_DIR}/test3.cpp)

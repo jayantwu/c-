@@ -44,9 +44,24 @@ void fun() {
     scoped_thread t{std::thread(my_func)};
     do_my_current_task();
 }
+thread::id master_thread;
+
+void f1()
+{
+    if (std::this_thread::get_id() == master_thread)
+        cout << "this is master thread." << endl;
+    else {
+        cout << "other thread to something" << endl;
+    }
+    cout << "master and other do something" << endl;
+}
 
 int main() {
-
+    
+    master_thread = std::this_thread::get_id();
+    f1();
+    thread t1(f1);
+    t1.join();
     try
     {
         fun();
@@ -55,7 +70,7 @@ int main() {
     {
         std::cerr << e.what() << '\n';
     }
-    
+
     return 0;
 
 }
