@@ -1,5 +1,0 @@
-/usr/local/wujiayang/c-plus-plus/cppreveiw/c++concurrent/basictest/build/CMakeFiles/rebuild_cache.dir
-/usr/local/wujiayang/c-plus-plus/cppreveiw/c++concurrent/basictest/build/CMakeFiles/edit_cache.dir
-/usr/local/wujiayang/c-plus-plus/cppreveiw/c++concurrent/basictest/build/CMakeFiles/test1.dir
-/usr/local/wujiayang/c-plus-plus/cppreveiw/c++concurrent/basictest/build/CMakeFiles/test3.dir
-/usr/local/wujiayang/c-plus-plus/cppreveiw/c++concurrent/basictest/build/CMakeFiles/test2.dir
