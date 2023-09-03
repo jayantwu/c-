@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <functional>
+#include <cassert>
 
 using namespace std;
 using json = nlohmann::json;
@@ -12,6 +13,27 @@ void myfun()
 {
     cout << "aaa" << endl;
 }
+
+namespace ns {
+    // a simple struct to model a person
+    struct person {
+        std::string name;
+        std::string address;
+        int age;
+        //NLOHMANN_DEFINE_TYPE_INTRUSIVE(person, name, address, age)
+    };
+
+    void to_json(json& j, const person& p) {
+        j = json{{"name", p.name}, {"address", p.address}, {"age", p.age}};
+    }
+
+    void from_json(const json& j, person& p) {
+        j.at("name").get_to(p.name);
+        j.at("address").get_to(p.address);
+        j.at("age").get_to(p.age);
+    }
+}
+
 
 int main()
 {
@@ -62,6 +84,24 @@ int main()
     //j0.push_back("lbl");
     //f fun = j0["oid"]["fun"];
     cout << j0.dump(4) << endl;
+
+
+    // create a person
+    ns::person p {"Ned Flanders", "744 Evergreen Terrace", 60};
+
+    // conversion: person -> json
+    json js = p;
+
+    std::cout << js << std::endl;
+    // {"address":"744 Evergreen Terrace","age":60,"name":"Ned Flanders"}
+
+    // conversion: json -> person
+    auto p2 = js.get<ns::person>();
+
+    cout << p2.name << endl;
+
+    // that's it
+    //assert(p == p2);
 
 
 }
