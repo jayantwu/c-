@@ -19,13 +19,13 @@ void transfer(bank_account &from, bank_account &to, int amount)
     // lock both mutexes without deadlock
     std::lock(from.m, to.m);
     // make sure both already-locked mutexes are unlocked at the end of scope
-    std::lock_guard<std::mutex> lock1{from.m, std::adopt_lock}; // 为了释放锁
+    std::lock_guard<std::mutex> lock1{from.m, std::adopt_lock}; // 为了释放锁， 调用lock时， 已经把两个锁锁住， 保证这两个锁在离开作用域时自动释放
     std::lock_guard<std::mutex> lock2{to.m, std::adopt_lock};
  
 // equivalent approach:
-//    std::unique_lock<std::mutex> lock1{from.m, std::defer_lock};
+//    std::unique_lock<std::mutex> lock1{from.m, std::defer_lock}; // 推迟锁住这两个锁
 //    std::unique_lock<std::mutex> lock2{to.m, std::defer_lock};
-//    std::lock(lock1, lock2);
+//    std::lock(lock1, lock2); //在这里把两个锁锁住， 离开作用域时会自动释放
  
     from.balance -= amount;
     to.balance += amount;
