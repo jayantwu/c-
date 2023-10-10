@@ -13,12 +13,17 @@ void push()
     while(true) {
         for (auto i = 1; i < 6; i++) {
             {
-                std::lock_guard<std::mutex> lk{mtx};
-                //std::scoped_lock<std::mutex> {mtx};
+                //std::scoped_lock lk{mtx};
+            {
+                //std::lock_guard<std::mutex> lk{mtx};
+                cout << "push: before lock" << endl;
+                std::scoped_lock lk{mtx};
                 q.push_back(i);
+            }
             }
             cout << "push succ " << i << endl;
             std::this_thread::sleep_for(std::chrono::milliseconds(1));
+            //std::this_thread::sleep_for(std::chrono::microseconds(4));
         }
         cout << endl;
         if (q.size() > 100)
@@ -30,8 +35,11 @@ void del()
 {
     while(true) {
         std::this_thread::sleep_for(std::chrono::milliseconds(5));
+        //std::this_thread::sleep_for(std::chrono::microseconds(20));
         bool last_done = false;
         bool first_done = false;
+        cout << "del: before lock" << endl;
+        //std::scoped_lock lk{mtx};
         if (q.size() == 0) continue;
         auto start_it = q.begin();
         int first = q.front();
@@ -59,10 +67,14 @@ void del()
 
         if (last_done && first_done) {
             {
-                std::lock_guard<std::mutex> lk{mtx};
-                //std::scoped_lock lk{mtx};
+            //std::scoped_lock lk{mtx};
+            {
+                //std::lock_guard<std::mutex> lk{mtx};
+                //cout << "del: before lock" << endl;
+                std::scoped_lock lk{mtx};
                 cout << "start: " << *start_it << " end: " << *end_it << endl;
                 q.erase(start_it, end_it+1);
+            }
             }
             cout << "erase succ" << endl;
         } else {
@@ -70,9 +82,11 @@ void del()
         }
         cout << "size: " << q.size() << endl;
         for (auto i : q) {
+            //cout << "helo" << endl;
             cout << i << " ";
         }
         cout << endl;
+        cout << "helo" << endl;
     }
 }
 
