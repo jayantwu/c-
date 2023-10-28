@@ -34,10 +34,10 @@ def execute(filename):
     print("execute done!")
 
 if __name__ == '__main__':
-    filename = "1.txt"
+    filename = "4.txt"
     d = {"miss": [], "dup": []}
     while len(d["miss"]) == 0 and len(d["dup"]) == 0:
-        #execute(filename)
+        execute(filename)
         d = race_conditon_check(filename)
     
     print("miss: ", end='')
