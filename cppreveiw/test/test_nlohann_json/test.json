@@ -1,0 +1,29 @@
+{
+    "name": "test nlohann json usage",
+    "resource_desc": {
+        "house_desc": {
+            "house_name": "Cloud Above the River",
+            "height": 10,
+            "area": 300,
+            "value": 1000
+        },
+        "field_desc": {
+            "position": "ZheJiang village",
+            "area": 5
+        },
+        "livestock": [
+            {
+                "type": "pig",
+                "num": 5
+            },
+            {
+                "type": "dog",
+                "num": 1
+            },
+            {
+                "type": "chicken",
+                "num": 10
+            }
+        ]
+    }
+}
