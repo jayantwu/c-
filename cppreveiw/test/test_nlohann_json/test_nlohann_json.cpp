@@ -74,5 +74,15 @@ int main()
     myhouse2.print_house();
 
 
+    json j;
+    j["name"] = "wu";
+    j["age"] = 33;
+    json k;
+    k["name"] = "liu";
+    k["age"] = nullptr; // will auto remove this key when merge
+    k["day"] = 323;
+    // k.merge_patch(j);
+    j.merge_patch(k);
+    cout << j.dump(4) << endl;
 
 }
