@@ -1,5 +1,6 @@
 #include <iostream>
 #include <memory>
+#include <string>
 
 using namespace std;
 
@@ -12,11 +13,22 @@ struct S {
     }
 };
 
+struct U {
+    int a;
+    int b;
+    friend ostream & operator<<(ostream & os, U &u) {
+        cout << "a: "<< u.a << " b:" <<  u.b;
+        return os;
+    }
+};
+
 template<typename T>
 class A {
 public:
     virtual void set(int n, int m)=0;
     virtual void set(T t)=0;
+private:
+    string class_name;
 };
 
 template<typename T>
@@ -33,16 +45,28 @@ public:
 };
 
 
-class C : public B<S> {
+class C1 : public B<S> {
 public:
     virtual void set(int n, int m) {
         ss s = {n, m}; 
-        cout << "set C.... " << s << endl; 
+        cout << "set C1.... " << s << endl; 
     }
     virtual void set(B<S>::ss t) {
-        cout << "set C.... " << t << endl; 
+        cout << "set C1.... " << t << endl; 
     }
 };
+
+class C2 : public B<U> {
+public:
+    virtual void set(int n, int m) {
+        ss s = {n, m}; 
+        cout << "set C2.... " << s << endl; 
+    }
+    virtual void set(B<U>::ss t) {
+        cout << "set C2.... " << t << endl; 
+    }
+};
+
 
 int main()
 {
@@ -57,13 +81,18 @@ int main()
 
     B_ptr_i->set({33, 55});
 
-    auto C_ptr = make_shared<C>();
+    auto C1_ptr = make_shared<C1>();
 
-    C_ptr->set(3, 5);
+    C1_ptr->set(3, 5);
+    auto C1_ptr_i = dynamic_pointer_cast<A<S>>(C1_ptr);
+    C1_ptr_i->set(4, 5);
 
-    auto C_ptr_i = dynamic_pointer_cast<A<S>>(C_ptr);
+    auto C2_ptr = make_shared<C2>();
+    C2_ptr->set(3, 5);
+    auto C2_ptr_i = dynamic_pointer_cast<A<U>>(C2_ptr);
 
-    C_ptr_i->set(4, 5);
+    C2_ptr_i->set(4, 5);    
+
 
     return 0;
 }
